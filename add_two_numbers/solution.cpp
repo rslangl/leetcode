@@ -1,35 +1,35 @@
-#include <utility>
 #include "solution.hpp"
+#include <iostream>
 
 auto solution::add_two_numbers(ListNode* l1, ListNode* l2) -> ListNode*
 {
-  ListNode* res;
-  int l1_val, l2_val;
+  ListNode* res = new ListNode(0);
+  ListNode* res_base = &(*res);
+  int l1_val{0}, l2_val{0}, carry_val{0}, res_val{0};
 
-  // Helper lambda for getting carry and element value
-  // from the sum of two numbers
-  auto carry = [](const int num) -> std::pair<int, int>
+  while(l1 != nullptr && l2 != nullptr)
   {
-    std::pair<int, int> ret;
-    return (num > 9) ? ret = std::make_pair(1, 10 - num) : std::make_pair(0, num);
-   };
+    l1_val = (l1 != nullptr) ? l1->val : 0;
+    l2_val = (l2 != nullptr) ? l2->val : 0;
 
-  while(l1->next != nullptr)
-  {
-    if(l1 != nullptr) l1_val = l1->val;
-    if(l2 != nullptr) l2_val = l2->val;
+    if(res == nullptr) { res = new ListNode(0); }
 
-    std::pair<int, int> current_element = carry(l1->val + l2->val);
+    res_val = l1_val + l2_val + carry_val;
+    carry_val = 0;
 
-    res = new ListNode(
-      // Carry value
-      std::get<0>(current_element), 
-      // Legal element value (0 <= n <= 9)
-      new ListNode(std::get<1>(current_element)));
+    if(res_val > 9)
+    {
+      res_val = res_val - 10;
+      carry_val = 1;
+    }
+    
+    res->val = res_val;
 
-    if(l1->next != nullptr) l1 = l1->next;
-    if(l2->next != nullptr) l2 = l2->next;
+    l1 = l1->next;
+    l2 = l2->next;
+
+    res = res->next;
   }
 
-  return res;
+  return res_base;
 }

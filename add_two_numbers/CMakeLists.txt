@@ -2,8 +2,7 @@
 
 add_library(
     addtwonums_solution_lib OBJECT
-    solution.cpp
-)
+    solution.cpp)
 
 target_include_directories(
     addtwonums_solution_lib
@@ -12,9 +11,6 @@ target_include_directories(
 )
 
 target_compile_features(addtwonums_solution_lib PUBLIC cxx_std_20)
-
-find_package(fmt REQUIRED)
-target_link_libraries(addtwonums_solution_lib PRIVATE fmt::fmt)
 
 # ---- Declare executable ----
 
@@ -25,5 +21,6 @@ set_property(TARGET addtwonums_exe PROPERTY OUTPUT_NAME addtwonums)
 
 target_compile_features(addtwonums_exe PRIVATE cxx_std_20)
 
-find_package(Catch2 REQUIRED)
-target_link_libraries(addtwonums_exe PRIVATE addtwonums_solution_lib Catch2::Catch2WithMain)
+find_package(Catch2 CONFIG REQUIRED)
+find_package(fmt REQUIRED)
+target_link_libraries(addtwonums_exe PRIVATE addtwonums_solution_lib Catch2::Catch2WithMain fmt::fmt)

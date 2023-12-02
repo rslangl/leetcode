@@ -8,12 +8,11 @@ std::function<bool(std::vector<int>&, ListNode*)> is_equal =
   [](std::vector<int>& ans, ListNode* res) -> bool
 {
   bool eq;
-  for(const auto num : ans)
+  for(auto val : ans)
   {
-    fmt::print("Comparing ans digit {} to node digit {}\n", num, res->val);
-
+    fmt::print("val = {}, res_val = {}\n", val, res->val);
     // Immediately return false when the digits does not match
-    if(num != res->val)
+    if(val != res->val)
     {
       eq = false;
       break;
@@ -27,6 +26,7 @@ std::function<bool(std::vector<int>&, ListNode*)> is_equal =
     else
     {
       eq = true;
+      break;
     }
   }
   return eq;
@@ -35,7 +35,7 @@ std::function<bool(std::vector<int>&, ListNode*)> is_equal =
 TEST_CASE("L1 = [2,4,3] and L2 = [5,6,4] should yield Res = [7,0,8]")
 {
   ListNode* l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
-  ListNode* l2 = new ListNode(4, new ListNode(5, new ListNode(6)));
+  ListNode* l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
   ListNode* res = solution::add_two_numbers(l1, l2);
 
   std::vector<int> ans{7,0,8};
