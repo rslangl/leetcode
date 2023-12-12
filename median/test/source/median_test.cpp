@@ -9,7 +9,7 @@ TEST_CASE("nums1 = [1,3] and nums2 = [2] should yield median = 2")
 
   double res = Solution::find_median(nums1, nums2);
 
-  REQUIRE_THAT(res, WithinAbs(2.0, 2.0));
+  REQUIRE_THAT(res, Catch::Matchers::WithinAbs(2.0, 2.0));
 }
 
 TEST_CASE("nums1 = [1,2] and nums2 = [3,4] should yield median = 2.5")
@@ -19,6 +19,6 @@ TEST_CASE("nums1 = [1,2] and nums2 = [3,4] should yield median = 2.5")
 
   double res = Solution::find_median(nums1, nums2);
 
-  REQUIRE_THAT(res, WithinAbs(2.5, 2.5));
+  REQUIRE_THAT(res, Catch::Matchers::WithinAbs(2.5, 2.5));
 }
 
