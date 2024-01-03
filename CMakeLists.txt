@@ -9,3 +9,4 @@ project(
 )
 add_subdirectory(two_sum)
 add_subdirectory(add_two_numbers)
+add_subdirectory(median_sorted_arrays)

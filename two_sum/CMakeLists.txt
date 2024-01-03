@@ -1,29 +1,62 @@
+cmake_minimum_required(VERSION 3.14)
+
+include(cmake/prelude.cmake)
+
+project(
+    two_sum
+    VERSION 0.1.0
+    DESCRIPTION "Short description"
+    HOMEPAGE_URL "https://example.com/"
+    LANGUAGES CXX
+)
+
+include(cmake/project-is-top-level.cmake)
+include(cmake/variables.cmake)
+
 # ---- Declare library ----
 
 add_library(
-    twosum_solution_lib OBJECT
-    solution.cpp
+    two_sum_lib OBJECT
+    source/lib.cpp
 )
 
 target_include_directories(
-    twosum_solution_lib
+    two_sum_lib ${warning_guard}
     PUBLIC
-    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}"
+    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
 )
 
-target_compile_features(twosum_solution_lib PUBLIC cxx_std_20)
+target_compile_features(two_sum_lib PUBLIC cxx_std_20)
 
 find_package(fmt REQUIRED)
-target_link_libraries(twosum_solution_lib PRIVATE fmt::fmt)
+target_link_libraries(two_sum_lib PRIVATE fmt::fmt)
 
 # ---- Declare executable ----
 
-add_executable(twosum_exe twosum.cpp)
-add_executable(twosum::exe ALIAS twosum_exe)
+add_executable(two_sum_exe source/main.cpp)
+add_executable(two_sum::exe ALIAS two_sum_exe)
 
-set_property(TARGET twosum_exe PROPERTY OUTPUT_NAME twosum)
+set_property(TARGET two_sum_exe PROPERTY OUTPUT_NAME two_sum)
 
-target_compile_features(twosum_exe PRIVATE cxx_std_20)
+target_compile_features(two_sum_exe PRIVATE cxx_std_20)
 
-find_package(Catch2 REQUIRED)
-target_link_libraries(twosum_exe PRIVATE twosum_solution_lib Catch2::Catch2WithMain)
+target_link_libraries(two_sum_exe PRIVATE two_sum_lib)
+
+# ---- Install rules ----
+
+if(NOT CMAKE_SKIP_INSTALL_RULES)
+  include(cmake/install-rules.cmake)
+endif()
+
+# ---- Developer mode ----
+
+if(NOT two_sum_DEVELOPER_MODE)
+  return()
+elseif(NOT PROJECT_IS_TOP_LEVEL)
+  message(
+      AUTHOR_WARNING
+      "Developer mode is intended for developers of two_sum"
+  )
+endif()
+
+include(cmake/dev-mode.cmake)
