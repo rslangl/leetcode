@@ -5,7 +5,7 @@
 #include "solution.hpp"
 
 std::function<bool(std::vector<int>&, ListNode*)> is_equal = 
-  [](std::vector<int>& ans, ListNode* res) -> bool
+  [](std::vector<int>& ans, const ListNode* res) -> bool
 {
   bool eq;
   for(auto val : ans)
