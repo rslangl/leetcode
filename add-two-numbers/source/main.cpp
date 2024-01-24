@@ -33,7 +33,7 @@ auto print_list(ListNode* list, std::string* out) -> std::string*
 }
 } // namespace
 
-auto main(int  argc, char** argv) -> int
+auto main(int argc, char** argv) -> int
 {
   cxxopts::Options opts("Add two numbers");
 
