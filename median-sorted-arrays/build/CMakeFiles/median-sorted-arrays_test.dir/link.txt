@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/median-sorted-arrays_test.dir/src/median-sorted-arrays_test.cpp.o" "CMakeFiles/median-sorted-arrays_lib.dir/src/solution.cpp.o" -o median-sorted-arrays_test  /usr/lib/libCatch2WithMain.a 

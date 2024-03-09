@@ -1,64 +1,47 @@
 cmake_minimum_required(VERSION 3.14)
 
-include(cmake/prelude.cmake)
-
 project(
     two-sum
     VERSION 0.1.0
-    DESCRIPTION "Short description"
+    DESCRIPTION "two sum"
     HOMEPAGE_URL "github.com/rslangl/leetcode"
     LANGUAGES CXX
 )
-
-include(cmake/project-is-top-level.cmake)
-include(cmake/variables.cmake)
 
 # ---- Declare library ----
 
 add_library(
     two-sum_lib OBJECT
-    source/solution.cpp
+    src/solution.cpp
 )
 
 target_include_directories(
-    two-sum_lib ${warning_guard}
+    two-sum_lib
     PUBLIC
-    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
+    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
 )
 
 target_compile_features(two-sum_lib PUBLIC cxx_std_20)
 
-#target_link_libraries(two-sum_lib PRIVATE fmt::fmt)
+# ---- Declare test ----
 
-# ---- Declare executable ----
+find_package(Catch2 CONFIG REQUIRED)
+include(Catch)
+include(CTest)
 
-find_package(fmt REQUIRED)
-find_package(cxxopts REQUIRED)
+include_testing()
 
-add_executable(two-sum_exe source/main.cpp)
-add_executable(two-sum::exe ALIAS two-sum_exe)
+add_executable(
+  two-sum_test
+  src/two-sum_test.cpp
+)
 
-set_property(TARGET two-sum_exe PROPERTY OUTPUT_NAME two-sum)
+target_link_libraries(
+    two-sum_test PRIVATE
+    two-sum_lib
+    Catch2::Catch2WithMain
+)
 
-target_compile_features(two-sum_exe PRIVATE cxx_std_20)
+target_compile_features(two-sum_test PRIVATE cxx_std_20)
 
-target_link_libraries(two-sum_exe PRIVATE two-sum_lib cxxopts::cxxopts fmt::fmt)
-
-# ---- Install rules ----
-
-if(NOT CMAKE_SKIP_INSTALL_RULES)
-  include(cmake/install-rules.cmake)
-endif()
-
-# ---- Developer mode ----
-
-if(NOT two-sum_DEVELOPER_MODE)
-  return()
-elseif(NOT PROJECT_IS_TOP_LEVEL)
-  message(
-      AUTHOR_WARNING
-      "Developer mode is intended for developers of two-sum"
-  )
-endif()
-
-include(cmake/dev-mode.cmake)
+catch_discover_tests(two-sum_test)
