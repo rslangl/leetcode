@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/add-two-numbers_test.dir/src/add-two-numbers_test.cpp.o" "CMakeFiles/add-two-numbers_lib.dir/src/solution.cpp.o" -o add-two-numbers_test  /usr/lib/libCatch2WithMain.a 

@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/two-sum_test.dir/src/two-sum_test.cpp.o" "CMakeFiles/two-sum_lib.dir/src/solution.cpp.o" -o two-sum_test  /usr/lib/libCatch2WithMain.a 
