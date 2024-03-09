@@ -1,6 +1,7 @@
 
 #include "solution.hpp"
 #include <catch2/catch_test_macros.hpp>
+#include <numeric>
 
 TEST_CASE("Test numbers [2, 7, 11, 15] and target = 9") {
   std::vector<int> nums{2, 7, 11, 15};

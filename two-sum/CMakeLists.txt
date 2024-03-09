@@ -25,11 +25,11 @@ target_compile_features(two-sum_lib PUBLIC cxx_std_20)
 
 # ---- Declare test ----
 
-find_package(Catch2 CONFIG REQUIRED)
+find_package(Catch2 REQUIRED)
 include(Catch)
 include(CTest)
 
-include_testing()
+enable_testing()
 
 add_executable(
   two-sum_test
