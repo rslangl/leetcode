@@ -1,5 +1,0 @@
-if(EXISTS "/home/rune/projects/leetcode/median-sorted-arrays/build/median-sorted-arrays_test_tests-b12d07c.cmake")
-  include("/home/rune/projects/leetcode/median-sorted-arrays/build/median-sorted-arrays_test_tests-b12d07c.cmake")
-else()
-  add_test(median-sorted-arrays_test_NOT_BUILT-b12d07c median-sorted-arrays_test_NOT_BUILT-b12d07c)
-endif()

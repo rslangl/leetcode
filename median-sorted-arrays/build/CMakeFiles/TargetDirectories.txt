@@ -1,4 +1,0 @@
-/home/rune/projects/leetcode/median-sorted-arrays/build/CMakeFiles/median-sorted-arrays_lib.dir
-/home/rune/projects/leetcode/median-sorted-arrays/build/CMakeFiles/median-sorted-arrays_test.dir
-/home/rune/projects/leetcode/median-sorted-arrays/build/CMakeFiles/edit_cache.dir
-/home/rune/projects/leetcode/median-sorted-arrays/build/CMakeFiles/rebuild_cache.dir

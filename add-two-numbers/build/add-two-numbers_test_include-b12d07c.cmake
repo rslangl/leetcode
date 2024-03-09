@@ -1,5 +1,0 @@
-if(EXISTS "/home/rune/projects/leetcode/add-two-numbers/build/add-two-numbers_test_tests-b12d07c.cmake")
-  include("/home/rune/projects/leetcode/add-two-numbers/build/add-two-numbers_test_tests-b12d07c.cmake")
-else()
-  add_test(add-two-numbers_test_NOT_BUILT-b12d07c add-two-numbers_test_NOT_BUILT-b12d07c)
-endif()
